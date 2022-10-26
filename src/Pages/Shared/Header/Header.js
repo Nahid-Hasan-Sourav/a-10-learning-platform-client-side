@@ -1,3 +1,4 @@
+import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -28,6 +29,13 @@ function Header() {
             <Nav.Link eventKey={2} href="#memes">
               Dank memes
             </Nav.Link>
+            <Nav.Link  >
+             <Button variant='danger'   as={Link} to='/register'>Register</Button>
+            </Nav.Link>
+            <Nav.Link>
+                
+                <Button variant='danger'   as={Link} to='/login'>Login</Button>
+            </Nav.Link>         
             <Nav.Link href="#deets">Toggle</Nav.Link>
           </Nav>
         </Navbar.Collapse>

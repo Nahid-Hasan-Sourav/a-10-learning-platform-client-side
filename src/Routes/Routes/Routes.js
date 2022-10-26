@@ -8,6 +8,8 @@ import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Faq from "../../Pages/Faq/Faq";
 import Home from "../../Pages/Home/Home";
 import Checkout from "../../Pages/Checkout/Checkout";
+import Register from "../../Pages/Login/Register/Register";
+import Login from "../../Pages/Login/Login/Login";
 
 export const routes = createBrowserRouter([
     {
@@ -33,6 +35,11 @@ export const routes = createBrowserRouter([
             element:<CourseDetails></CourseDetails>
           },
           {
+            path:"/premium-access/:id",
+            loader: ({params}) => fetch(`http://localhost:5000/course-details/${params.id}`),
+            element:<Checkout></Checkout>
+          },
+          {
             path:"/faq",
             element:<Faq></Faq>
           },
@@ -41,10 +48,14 @@ export const routes = createBrowserRouter([
             element:<Blog></Blog>
           },
           {
-            path:"/premium-access/:id",
-            loader: ({params}) => fetch(`http://localhost:5000/course-details/${params.id}`),
-            element:<Checkout></Checkout>
-          }
+            path:"/register",
+            element:<Register></Register>
+          },
+          {
+            path:"/login",
+            element:<Login></Login>
+          },
+          
         
         ]
     }

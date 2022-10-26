@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ListGroup from 'react-bootstrap/ListGroup';
 import {Link } from 'react-router-dom';
+import { FaDownload } from 'react-icons/fa';
 
 const CourseDetails = () => {
   const CourseDatails = useLoaderData();
@@ -16,8 +17,13 @@ const CourseDetails = () => {
       <Row className='justify-content-center py-3'>
         <Col lg="8">
         <Card >
-        <Card.Header>
-        <Card.Title><h3>{CourseDatails.name}</h3></Card.Title>
+        <Card.Header style={{height:'60px'}}>
+        <Card.Title className="h-100">
+            <div className="d-flex flex-row justify-content-between align-items-center h-100">
+            <h3>{CourseDatails.name}</h3>
+            <p style={{cursor:'pointer'}}> <FaDownload /></p>
+            </div>
+        </Card.Title>
         </Card.Header>
           <Card.Img style={{height:'300px'}} src={CourseDatails.url} />
           <Card.Body>
