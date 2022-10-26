@@ -9,7 +9,7 @@ function Header() {
   return (
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand  href="#home">
+        <Navbar.Brand  as={Link} to='/home'>
             <span className='fw-bold fs-2 pb-2 d-inline-block text-danger me-2'><FaUserGraduate /></span>
             <span className='fw-bold fs-2'>Educrat</span>
         </Navbar.Brand>
@@ -17,9 +17,9 @@ function Header() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
             <Nav.Link as={Link} to='/home'>Home</Nav.Link>
-            <Nav.Link href="#features">Courses</Nav.Link>
-            <Nav.Link href="#pricing">Faq</Nav.Link>
-            <Nav.Link href="#pricing">Blog</Nav.Link>
+            <Nav.Link as={Link} to='/courses'>Courses</Nav.Link>
+            <Nav.Link as={Link} to='/faq'>Faq</Nav.Link>
+            <Nav.Link  as={Link} to='/blog'>Blog</Nav.Link>
            
            
           </Nav>

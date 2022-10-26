@@ -1,7 +1,7 @@
 // import ReNav.Linkct from 'reNav.Linkct';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-// import {Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import { FaFacebook,FaTwitter,FaGoogle,FaGithub} from 'react-icons/fa';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -10,45 +10,7 @@ import Col from 'react-bootstrap/Col';
 const Footer = () => {
     return (
      
-//      <ContFaner>
 
-   
-//    <Row className="bg-dark row text-center d-flex justify-content-center pt-5">
-     
-//      <Col className="col-md-2">
-//        <h6 className="text-uppercase fw-bold">
-//          <Nav.Link  className="text-white">Nav.Linkbout us</Nav.Link>
-//        </h6>
-//      </Col>
-    
-//      <div className="col-md-2">
-//        <h6 className="text-uppercase fw-bold">
-//          <Nav.Link  className="text-white">Products</Nav.Link>
-//        </h6>
-//      </div>
-     
-//      <div className="col-md-2">
-//        <h6 className="text-uppercase fw-bold">
-//          <Nav.Link  className="text-white">Nav.LinkwNav.Linkrds</Nav.Link>
-//        </h6>
-//      </div>
-    
-//      <div className="col-md-2">
-//        <h6 className="text-uppercase fw-bold">
-//          <Nav.Link  className="text-white">Help</Nav.Link>
-//        </h6>
-//      </div>
-   
-//      <div className="col-md-2">
-//        <h6 className="text-uppercase fw-bold">
-//          <Nav.Link  className="text-white">ContNav.Linkct</Nav.Link>
-//        </h6>
-//      </div>
-
-//    </Row>
- 
-       
-//      </ContFaner>
 
 <div className="bg-dark text-center text-white">
    
@@ -60,31 +22,31 @@ const Footer = () => {
          
          <div className="col-md-2">
            <h6 className="text-uppercase font-weight-bold">
-             <Nav.Link  className="text-white">Courses</Nav.Link>
+             <Nav.Link as={Link} to='/courses' className="text-white">Courses</Nav.Link>
            </h6>
          </div>
         
          <div className="col-md-2">
            <h6 className="text-uppercase font-weight-bold">
-             <Nav.Link  className="text-white">Faq</Nav.Link>
+             <Nav.Link as={Link} to='/Faq' className="text-white">Faq</Nav.Link>
            </h6>
          </div>
          
          <div className="col-md-2">
            <h6 className="text-uppercase font-weight-bold">
-             <Nav.Link  className="text-white">Blog</Nav.Link>
+             <Nav.Link as={Link} to='/blog' className="text-white">Blog</Nav.Link>
            </h6>
          </div>
         
          <div className="col-md-2">
            <h6 className="text-uppercase font-weight-bold">
-             <Nav.Link  className="text-white">Help</Nav.Link>
+             <Nav.Link as={Link} to='/Faq' className="text-white">Help</Nav.Link>
            </h6>
          </div>
        
          <div className="col-md-2">
            <h6 className="text-uppercase font-weight-bold">
-             <Nav.Link  className="text-white"></Nav.Link>
+             <Nav.Link as={Link} to='/home' className="text-white">Home</Nav.Link>
            </h6>
          </div>
     
