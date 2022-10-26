@@ -3,6 +3,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import {Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
+import Nav from 'react-bootstrap/Nav';
 
 const Login = () => {
   return (
@@ -24,17 +27,22 @@ const Login = () => {
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
             
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="d-block w-100">
              Login
             </Button>
-            <p className="d-flex flex-row my-2">
+            <p className="d-flex flex-row my-2 justify-content-center">
                 Don't Have An Account? Please
-                 <Link className="mx-1" to='/register'>
+                <Nav.Link className="mx-1 text-primary" as={Link} to='/register'>
                     Register
-                </Link>
+                </Nav.Link>
             </p>
           </Form>
-
+          <Button variant="light" type="submit" className='bg-light d-block w-100 mb-2 fw-bold'>
+            <FcGoogle className="fw-bold fs-2 me-2" />Continue With Google
+            </Button>  
+            <Button variant="light" type="submit" className='bg-light d-block w-100 fw-bold'>
+            <FaGithub className="fw-bold fs-2 me-2" />Continue With Google
+            </Button>
         </Col>
       </Row>
     </Container>
