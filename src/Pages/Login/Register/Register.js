@@ -11,7 +11,7 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 const Register = () => {
 
-    const {providerLogin}=useContext(AuthContext)
+    const {providerLogin,createUser}=useContext(AuthContext)
     const googleProvider=new GoogleAuthProvider()
     const handleGoogleSignIn=()=>{
         providerLogin(googleProvider)
@@ -23,19 +23,40 @@ const Register = () => {
           })
         .catch(error => console.error(error))
     }
+    const handleSubmit =(event)=>{
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, photoURL, email, password);
+
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);          
+            form.reset();
+           
+        })
+        .catch(e => {
+            console.error(e);
+           
+        });
+    }
   return (
     <Container>
         <h2 className="fw-bold text-center py-3">User Registration Form</h2>
       <Row className="justify-content-center">
         <Col lg="6" className="order">
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Name</Form.Label>
-              <Form.Control name="Fname" type="text" placeholder="Enter Your full name" />            
+              <Form.Control name="name" type="text" placeholder="Enter Your full name" />            
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Photo url</Form.Label>
-              <Form.Control name="Fname" type="text" placeholder="Enter Your photo url" />            
+              <Form.Control name="photoURL" type="text" placeholder="Enter Your photo url" />            
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -44,7 +65,7 @@ const Register = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control name='password' type="password" placeholder="Password" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
