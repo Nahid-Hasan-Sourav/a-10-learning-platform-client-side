@@ -1,10 +1,36 @@
 import React from 'react';
-
+import { Container, Row,Col } from 'react-bootstrap';
+import Lottie from "lottie-react";
+import Exam from "../../Assets/student.json";
+import {Link } from 'react-router-dom';
 const Home = () => {
     return (
-        <div>
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus similique accusamus omnis, unde necessitatibus assumenda explicabo! Provident minus nulla obcaecati totam iure quos quibusdam iste ipsum! Recusandae quod non, repudiandae voluptate consectetur harum corporis. Labore numquam earum reprehenderit ipsam, optio, eius ducimus temporibus rem fugiat quasi recusandae quo voluptatem facere modi molestias in corporis harum hic obcaecati quam totam. Illo aliquid ea voluptates ullam quis magni, est alias asperiores quaerat delectus ipsum, quas et, doloribus recusandae iste facilis corporis vel molestias nam mollitia accusantium atque debitis. Ullam et neque, quam vero dolore natus? Maxime possimus vitae voluptatibus consequatur, ullam corporis ratione dolore similique iusto esse repellendus ad deleniti quibusdam cupiditate iste? Est laborum ducimus illo a id dignissimos dolorum assumenda. Ipsum enim ut doloremque molestiae cumque! Maxime, doloremque facilis omnis pariatur reprehenderit provident iste similique voluptate fuga facere optio dolorem aperiam accusantium, quasi laborum labore distinctio consequuntur quae a recusandae aliquid! Adipisci deleniti quae cum non vero eos, culpa officiis illo dicta esse qui recusandae soluta, unde sit a, illum cumque nostrum quos consequuntur eius laborum! Sequi magnam nesciunt at placeat perspiciatis. A vero possimus unde dolorem in corporis ut modi! Sint praesentium ipsum fuga voluptas unde sapiente atque sit est, aliquid laborum quaerat culpa impedit id eum, voluptates magnam cumque neque? Quaerat quos provident veniam, nobis et nulla illum inventore consectetur? Atque quae nemo consequuntur qui corporis culpa mollitia illum sequi sunt sit itaque suscipit debitis aliquid odit fugiat sint, velit earum! Atque consequatur ea vitae facilis natus voluptatum perferendis dolorum voluptas enim. Assumenda repudiandae maxime velit hic labore tenetur porro inventore sint necessitatibus earum neque magni odio blanditiis impedit deleniti sit, asperiores culpa repellat architecto quo saepe laboriosam quisquam at. Commodi, ullam eligendi! Eveniet nemo repellendus sit deleniti dolore, rem, ea voluptas placeat non laborum ducimus aliquid commodi!
-        </div>
+        <Container>
+        <Row className='p-4'>
+        <Col lg="6">
+          <div className="header-text h-100 d-flex flex-column align-items-center justify-content-center">
+            <h3 className="fw-bold text-primary text-center">
+              Organize Live Quiz For Your Skill Test
+            </h3>
+            <p className="text-center">
+              myQuiz is a web-based Audience Engagement Cloud Platform for
+              hosting interactive trivia quizzes at in-person, virtual, and
+              hybrid events. No app install is required
+            </p>
+            <button as={Link} className="btn btn-primary fw-bold">COURSES</button>
+          </div>
+        </Col>
+        <Col lg="6">
+          <div>
+            <Lottie
+              animationData={Exam}
+              loop={true}
+              style={{height:"350px"}}
+            ></Lottie>
+          </div>
+        </Col>
+      </Row>
+        </Container>
     );
 };
 
