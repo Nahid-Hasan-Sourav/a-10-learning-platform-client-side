@@ -16,7 +16,7 @@ const RightSideCategoryCard = ({category}) => {
                 <Card.Text>
                   {category.description.slice(0,110)}...
                 </Card.Text>
-                <Button variant="danger" className="d-block w-100 fw-bold" as={Link} to={`/course-details/${category.id}`}>Course Details</Button>
+                <Button variant="danger" className="d-block w-100 fw-bold" as={Link} to={`/course-details/${category.id}`}>VIEW COURSE</Button>
               </Card.Body>
             </Card>
           </Col>

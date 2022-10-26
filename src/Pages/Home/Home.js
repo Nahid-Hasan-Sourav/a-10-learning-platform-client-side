@@ -3,7 +3,19 @@ import { Container, Row,Col } from 'react-bootstrap';
 import Lottie from "lottie-react";
 import Exam from "../../Assets/student.json";
 import {Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import RightSideCategoryCard from '../Shared/RightSideCategoryCard/RightSideCategoryCard';
 const Home = () => {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+      fetch("http://localhost:5000/course-categories")
+        .then((res) => res.json())
+        .then((data) => setCategories(data));
+    }, []);
+  
     return (
         <Container>
         <Row className='p-4'>
@@ -17,7 +29,7 @@ const Home = () => {
               hosting interactive trivia quizzes at in-person, virtual, and
               hybrid events. No app install is required
             </p>
-            <button as={Link} className="btn btn-primary fw-bold">COURSES</button>
+            <Button as={Link} to='/courses' varient='primary' className="fw-bold">COURSES</Button>
           </div>
         </Col>
         <Col lg="6">
@@ -30,7 +42,18 @@ const Home = () => {
           </div>
         </Col>
       </Row>
-        </Container>
+     
+     <Row>
+        <h2 className='fw-bold text-decoration-underline py-3'>AVALABLE COURSES</h2>
+     {categories.map((category, index) => {
+        return (
+         <RightSideCategoryCard key={index} category={category}>
+
+         </RightSideCategoryCard>
+        );
+      })}
+    </Row>
+    </Container>
     );
 };
 
