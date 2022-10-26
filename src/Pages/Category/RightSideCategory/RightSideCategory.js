@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
+import RightSideCategoryCard from "../../Shared/RightSideCategoryCard/RightSideCategoryCard";
 
 const RightSideCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -20,18 +21,9 @@ const RightSideCategory = () => {
     <>
       {categories.map((category, index) => {
         return (
-          <Col key={index} lg="6" className="g-4 ">
-            <Card className="shadow-md">
-              <Card.Img style={{height:'180px'}} variant="top" src={category.url} />
-              <Card.Body>
-                <Card.Title>{category.name}</Card.Title>
-                <Card.Text>
-                  {category.description.slice(0,110)}...
-                </Card.Text>
-                <Button variant="danger" className="d-block w-100 fw-bold" as={Link} to={`/course-details/${category.id}`}>Course Details</Button>
-              </Card.Body>
-            </Card>
-          </Col>
+         <RightSideCategoryCard key={index} category={category}>
+
+         </RightSideCategoryCard>
         );
       })}
     </>
