@@ -9,12 +9,13 @@ import Nav from 'react-bootstrap/Nav';
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { useState } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider ,GithubAuthProvider} from "firebase/auth";
 
 const Login = () => {
   const[error,setError]=useState('')
-    const {signIn,providerLogin} = useContext(AuthContext);
+    const {signIn,providerLogin,githubslogin} = useContext(AuthContext);
     const googleProvider=new GoogleAuthProvider()
+    const githubProviders=new GithubAuthProvider()
     const navigate=useNavigate()
     const location=useLocation()
 
@@ -57,6 +58,21 @@ const Login = () => {
       
       })
   }
+
+  const handleGithubSignIn=()=>{
+    githubslogin(githubProviders)
+    .then((result) => {
+          
+      const user = result.user;
+      console.log(user)
+      navigate(from,{replace:true});
+      
+    })
+  .catch(error => {
+    console.error(error)
+  
+  })
+  }
   return (
     <Container>
         <h2 className="fw-bold text-center py-3">User Login</h2>
@@ -91,9 +107,11 @@ const Login = () => {
           >
             <FcGoogle className="fw-bold fs-2 me-2" />Continue With Google
         </Button>    
-            <Button variant="light" type="submit" className='bg-light d-block w-100 fw-bold'>
-            <FaGithub className="fw-bold fs-2 me-2" />Continue With Github
-            </Button>
+        <Button variant="light" type="submit" className='bg-light d-block w-100 fw-bold'
+        onClick={handleGithubSignIn}
+        >
+            <FaGithub className="fw-bold fs-2 me-2" />Continue With Google
+        </Button>
         </Col>
       </Row>
     </Container>

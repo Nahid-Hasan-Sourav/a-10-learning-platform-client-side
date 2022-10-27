@@ -8,7 +8,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 const Register = () => {
 
@@ -17,11 +17,11 @@ const Register = () => {
 
   const from=location.state?.from?.pathname || '/'
 
-    const {providerLogin,createUser}=useContext(AuthContext)
+    const {providerLogin,createUser,updateUserProfile,githubslogin}=useContext(AuthContext)
     const googleProvider=new GoogleAuthProvider()
-
+    const githubProviders=new GithubAuthProvider()
     const[error,setError]=useState('')
-    
+
     const handleGoogleSignIn=()=>{
         providerLogin(googleProvider)
         .then((result) => {
@@ -35,6 +35,20 @@ const Register = () => {
           console.error(error)
         
         })
+    }
+    const handleGithubSignIn=()=>{
+      githubslogin(githubProviders)
+      .then((result) => {
+            
+        const user = result.user;
+        console.log(user)
+        navigate(from,{replace:true});
+        
+      })
+    .catch(error => {
+      console.error(error)
+    
+    })
     }
     const handleSubmit =(event)=>{
         event.preventDefault();
@@ -51,6 +65,7 @@ const Register = () => {
             console.log(user);  
             setError('')        
             form.reset();
+            handleUpdateUserProfile(name,photoURL)
            
         })
         .catch(e => {
@@ -59,6 +74,21 @@ const Register = () => {
            
         });
     }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+      const profile = {
+          displayName: name,
+          photoURL: photoURL
+      }
+      console.log("This is profile",profile);
+
+      updateUserProfile(profile)
+          .then(() => { })
+          .catch(error => {
+            console.error(error)
+            setError(error.message);
+          });
+  }
   return (
     <Container>
         <h2 className="fw-bold text-center py-3">User Registration Form</h2>
@@ -67,7 +97,7 @@ const Register = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Name</Form.Label>
-              <Form.Control name="name" type="text" placeholder="Enter Your full name" />            
+              <Form.Control name="name" type="text" placeholder="Enter Your full name" required/>            
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Photo url</Form.Label>
@@ -110,7 +140,9 @@ const Register = () => {
             <FcGoogle className="fw-bold fs-2 me-2" />Continue With Google
         </Button>  
 
-        <Button variant="light" type="submit" className='bg-light d-block w-100 fw-bold'>
+        <Button variant="light" type="submit" className='bg-light d-block w-100 fw-bold'
+        onClick={handleGithubSignIn}
+        >
             <FaGithub className="fw-bold fs-2 me-2" />Continue With Google
         </Button>
         </Col>
