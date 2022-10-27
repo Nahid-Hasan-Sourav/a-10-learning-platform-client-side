@@ -1,4 +1,22 @@
-#
+# website name : Educrat
+# Live Site : https://learning-platform-as-10-e1de6.web.app
+
+# About Project 
+- This is a learning platform website.
+  The user can see the website and there  some courses are available, but to access those courses, the user has to create an account and login.
+
+- Courses page has course title on left side and course card on right side which when created will go to dynamic route and show the course related details
+
+- There is a premium button on the course details page Clicking on the course premium button will take the user to the login page if not logged in.
+- After login will take to checkout page where user name and id and some course related info.
+And there is a payment button.
+- If a user registers and login then he will be taken to home route.But if he login after clicking premium access button then he will be taken to checkout page.
+
+- There is a download button on the course details page which you click on. The page will be downloaded.
+
+- The blog page has some questions and their answers and there is a Faq page where users can ask some questions.
+
+- In this project I am using react-bootstarp,react-router-dom,react-icons,firebase,vercel etc.
 
 
 
