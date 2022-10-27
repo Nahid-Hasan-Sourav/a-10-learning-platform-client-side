@@ -66,6 +66,7 @@ const Register = () => {
             setError('')        
             form.reset();
             handleUpdateUserProfile(name,photoURL)
+            // after registration it will automatic logout start
             logOut()
             .then({})
             .catch(e => {
@@ -73,7 +74,7 @@ const Register = () => {
               setError(e.message)
              
           });
-
+           // after registration it will automatic logout end
            
         })
         .catch(e => {

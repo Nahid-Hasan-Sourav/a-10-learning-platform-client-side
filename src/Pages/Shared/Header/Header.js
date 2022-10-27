@@ -12,10 +12,13 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { CiDark } from 'react-icons/ci';
+import { MdDarkMode } from 'react-icons/md';
 
 function Header() {
 
   const [show, setShow] = useState(false);
+  const [toggle,setToggle]=useState(false)
   const target = useRef(null);
 
     const {user,logOut}=useContext(AuthContext);
@@ -24,6 +27,17 @@ function Header() {
         .then(()=>{})
         .catch(error => console.error())
     }
+    const darkMode=()=>{
+      if(!toggle){
+        setToggle(true)
+      }
+      
+      else{
+        setToggle(false)
+      }
+      
+    }
+    console.log(toggle)
   return (
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container>
@@ -41,7 +55,7 @@ function Header() {
            
            
           </Nav>
-          <Nav className='align-items-center'>
+          <Nav className='align-items-lg-center'>
            
             <Nav.Link>
             {
@@ -88,7 +102,11 @@ function Header() {
                     </>
                 }
             </Nav.Link>
-            <Nav.Link href="#deets">Toggle</Nav.Link>
+            <Nav.Link onClick={darkMode}>
+              {
+               toggle? <CiDark className='fs-1' />:<MdDarkMode  className='fs-1'/>
+              }
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
