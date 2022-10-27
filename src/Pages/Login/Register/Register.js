@@ -3,25 +3,32 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Nav from 'react-bootstrap/Nav';
-import {Link } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import { useState } from "react";
 const Register = () => {
 
+  const navigate=useNavigate()
     const {providerLogin,createUser}=useContext(AuthContext)
     const googleProvider=new GoogleAuthProvider()
+    const[error,setError]=useState('')
     const handleGoogleSignIn=()=>{
         providerLogin(googleProvider)
         .then((result) => {
             
             const user = result.user;
             console.log(user)
+            navigate('/')
             
           })
-        .catch(error => console.error(error))
+        .catch(error => {
+          console.error(error)
+        
+        })
     }
     const handleSubmit =(event)=>{
         event.preventDefault();
@@ -35,12 +42,14 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             const user = result.user;
-            console.log(user);          
+            console.log(user);  
+            setError('')        
             form.reset();
            
         })
         .catch(e => {
             console.error(e);
+            setError(e.message)
            
         });
     }
@@ -70,6 +79,9 @@ const Register = () => {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
+            <Form.Text className="text-danger mb-2 d-block">
+               {error}
+            </Form.Text>
             <Button variant="primary" type="submit" className='d-block w-100'>
               Register
             </Button>

@@ -8,8 +8,10 @@ import { FaGithub } from 'react-icons/fa';
 import Nav from 'react-bootstrap/Nav';
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { useState } from "react";
 
 const Login = () => {
+  const[error,setError]=useState('')
     const { signIn} = useContext(AuthContext);
     const navigate=useNavigate()
 
@@ -24,11 +26,13 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset()
+            setError('')
             navigate('/')
             
         })
         .catch(error => {
             console.error(error)
+            setError(error.message);
             
         })
 
@@ -42,16 +46,16 @@ const Login = () => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control name='email' type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
+             
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control name='password' type="password" placeholder="Password" />
             </Form.Group>
-            
+            <Form.Text className="text-danger mb-2 d-block">
+               {error}
+            </Form.Text>
             <Button variant="primary" type="submit" className="d-block w-100">
              Login
             </Button>
