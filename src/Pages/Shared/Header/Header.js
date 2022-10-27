@@ -82,7 +82,7 @@ function Header() {
                    
                     <div className=''>
                     <Image
-                    style={{height:'50px'}}
+                    style={{height:'30px'}}
                     roundedCircle
                     src={user?.photoURL}
                     ref={target} onMouseOver={() => setShow(!show)}

@@ -20,6 +20,7 @@ const Register = () => {
     const {providerLogin,createUser,updateUserProfile,githubslogin,logOut}=useContext(AuthContext)
     const googleProvider=new GoogleAuthProvider()
     const githubProviders=new GithubAuthProvider()
+    
     const[error,setError]=useState('')
 
     const handleGoogleSignIn=()=>{
@@ -82,6 +83,7 @@ const Register = () => {
             setError(e.message)
            
         });
+        navigate('/login')
     }
 
     const handleUpdateUserProfile = (name, photoURL) => {
@@ -103,7 +105,7 @@ const Register = () => {
         <h2 className="fw-bold text-center py-3">User Registration Form</h2>
       <Row className="justify-content-center">
         <Col lg="6" className="order">
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}  >
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Name</Form.Label>
               <Form.Control name="name" type="text" placeholder="Enter Your full name" required/>            
@@ -121,13 +123,13 @@ const Register = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control name='password' type="password" placeholder="Password" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Group className="mb-3" controlId="formBasicCheckbox" required>
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
             <Form.Text className="text-danger mb-2 d-block">
                {error}
             </Form.Text>
-            <Button as={Link} to='/login' variant="primary" type="submit" className='d-block w-100'>
+            <Button variant="primary" type="submit" className='d-block w-100'>
               Register
             </Button>
             <p className="d-flex flex-row my-2 justify-content-center">
