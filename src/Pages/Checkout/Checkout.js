@@ -17,6 +17,7 @@ const Checkout = () => {
             <ListGroup.Item><span className="fw-bold">Course Fee : </span>{premiumDetails.price}$</ListGroup.Item>
             <ListGroup.Item><span className="fw-bold">Course Access : </span>Life Time Video Access</ListGroup.Item>
           </ListGroup>
+          
         </Card>
         </Col>
       </Row>

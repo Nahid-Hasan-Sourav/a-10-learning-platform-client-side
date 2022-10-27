@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Nav from 'react-bootstrap/Nav';
-import {Link, useNavigate } from 'react-router-dom';
+import {Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { useContext } from "react";
@@ -13,16 +13,22 @@ import { useState } from "react";
 const Register = () => {
 
   const navigate=useNavigate()
+  const location = useLocation()
+
+  const from=location.state?.from?.pathname || '/'
+
     const {providerLogin,createUser}=useContext(AuthContext)
     const googleProvider=new GoogleAuthProvider()
+
     const[error,setError]=useState('')
+    
     const handleGoogleSignIn=()=>{
         providerLogin(googleProvider)
         .then((result) => {
             
             const user = result.user;
             console.log(user)
-            navigate('/')
+            navigate(from,{replace:true});
             
           })
         .catch(error => {
