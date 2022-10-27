@@ -11,6 +11,7 @@ import { FaDownload } from 'react-icons/fa';
 import Pdf from "react-to-pdf";
 const ref = React.createRef()
 const CourseDetails = () => {
+  
   const CourseDatails = useLoaderData();
   console.log("Details ", CourseDatails);
   return (
@@ -24,7 +25,7 @@ const CourseDetails = () => {
             <h3>{CourseDatails.name}</h3>
             <p style={{cursor:'pointer'}}> 
             
-            <Pdf targetRef={ref} filename="code-example.pdf">
+            <Pdf targetRef={ref} filename="course-info.pdf" >
            {({ toPdf }) => <button onClick={toPdf}> <FaDownload /></button>}
            </Pdf>
            {/* <Pdf targetRef={ref} filename="code-example.pdf">
@@ -35,8 +36,9 @@ const CourseDetails = () => {
           </div>
         </Card.Title>
         </Card.Header>
+          <div className="download" ref={ref}>
           <Card.Img style={{height:'300px'}} src={CourseDatails.url} />
-          <Card.Body  ref={ref}>
+          <Card.Body  >
           
             <Card.Text>
               {CourseDatails.description}
@@ -52,6 +54,7 @@ const CourseDetails = () => {
             </div>
             <Button variant="primary" as={Link} to={`/premium-access/${CourseDatails.id}`} className="d-block w-100">GET PREMIUM ACCESS</Button>
           </Card.Body>
+          </div>
         </Card>
         </Col>
       </Row>
