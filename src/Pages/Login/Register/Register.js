@@ -112,7 +112,7 @@ const Register = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Photo url</Form.Label>
-              <Form.Control name="photoURL" type="text" placeholder="Enter Your photo url" />            
+              <Form.Control name="photoURL" type="text" placeholder="Enter Your photo url" required  />            
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -121,11 +121,9 @@ const Register = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control name='password' type="password" placeholder="Password" />
+              <Form.Control name='password' type="password" placeholder="Password" required />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox" required>
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
+            
             <Form.Text className="text-danger mb-2 d-block">
                {error}
             </Form.Text>
@@ -133,7 +131,7 @@ const Register = () => {
               Register
             </Button>
             <p className="d-flex flex-row my-2 justify-content-center">
-                Already Have an accout? 
+                Already Have an accoutn? 
                  <Nav.Link className="mx-1 text-primary" as={Link} to='/login'>
                     Login
                 </Nav.Link>
