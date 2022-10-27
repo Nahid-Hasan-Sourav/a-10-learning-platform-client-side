@@ -17,7 +17,7 @@ const Register = () => {
 
   const from=location.state?.from?.pathname || '/'
 
-    const {providerLogin,createUser,updateUserProfile,githubslogin}=useContext(AuthContext)
+    const {providerLogin,createUser,updateUserProfile,githubslogin,logOut}=useContext(AuthContext)
     const googleProvider=new GoogleAuthProvider()
     const githubProviders=new GithubAuthProvider()
     const[error,setError]=useState('')
@@ -66,6 +66,14 @@ const Register = () => {
             setError('')        
             form.reset();
             handleUpdateUserProfile(name,photoURL)
+            logOut()
+            .then({})
+            .catch(e => {
+              console.error(e);
+              setError(e.message)
+             
+          });
+
            
         })
         .catch(e => {
@@ -105,7 +113,7 @@ const Register = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control name="email" type="email" placeholder="Enter email" />            
+              <Form.Control name="email" type="email" placeholder="Enter email" required />            
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -118,7 +126,7 @@ const Register = () => {
             <Form.Text className="text-danger mb-2 d-block">
                {error}
             </Form.Text>
-            <Button variant="primary" type="submit" className='d-block w-100'>
+            <Button as={Link} to='/login' variant="primary" type="submit" className='d-block w-100'>
               Register
             </Button>
             <p className="d-flex flex-row my-2 justify-content-center">

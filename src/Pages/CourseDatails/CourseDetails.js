@@ -8,12 +8,13 @@ import Card from "react-bootstrap/Card";
 import ListGroup from 'react-bootstrap/ListGroup';
 import {Link } from 'react-router-dom';
 import { FaDownload } from 'react-icons/fa';
-
+import Pdf from "react-to-pdf";
+const ref = React.createRef()
 const CourseDetails = () => {
   const CourseDatails = useLoaderData();
   console.log("Details ", CourseDatails);
   return (
-    <Container>
+    <Container >
       <Row className='justify-content-center py-3'>
         <Col lg="8">
         <Card >
@@ -21,12 +22,21 @@ const CourseDetails = () => {
         <Card.Title className="h-100">
             <div className="d-flex flex-row justify-content-between align-items-center h-100">
             <h3>{CourseDatails.name}</h3>
-            <p style={{cursor:'pointer'}}> <FaDownload /></p>
-            </div>
+            <p style={{cursor:'pointer'}}> 
+            
+            <Pdf targetRef={ref} filename="code-example.pdf">
+           {({ toPdf }) => <button onClick={toPdf}> <FaDownload /></button>}
+           </Pdf>
+           {/* <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+         </Pdf> */}
+
+           </p>
+          </div>
         </Card.Title>
         </Card.Header>
           <Card.Img style={{height:'300px'}} src={CourseDatails.url} />
-          <Card.Body>
+          <Card.Body  ref={ref}>
           
             <Card.Text>
               {CourseDatails.description}
