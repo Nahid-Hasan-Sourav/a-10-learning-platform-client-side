@@ -8,8 +8,16 @@ import {Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import Image from 'react-bootstrap/Image'
 import { FaUserAlt } from 'react-icons/fa';
+import { useState } from 'react';
+import { useRef } from 'react';
+import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 function Header() {
+
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
+
     const {user,logOut}=useContext(AuthContext);
     const handleLogout=()=>{
         logOut()
@@ -33,13 +41,13 @@ function Header() {
            
            
           </Nav>
-          <Nav>
+          <Nav className='align-items-center'>
            
             <Nav.Link>
             {
                 user?.uid ? 
                 <>
-                 <span>{user?.displayName}</span>
+                 
                  <Button className='mx-2'
                  onClick={handleLogout}
                  >Logout
@@ -53,17 +61,31 @@ function Header() {
              }
             </Nav.Link>
                     
-            <Nav.Link href="#deets">
+            <Nav.Link>
                 {
-                    user?.photoURL ?
+                    <>
+                    
+                   
+                    <div className=''>
                     <Image
                     style={{height:'30px'}}
                     roundedCircle
-                    src={user.photoURL}
+                    src={user?.photoURL}
+                    ref={target} onMouseOver={() => setShow(!show)}
+                    className=''
                     >
 
                     </Image> 
-                    : <FaUserAlt />
+                    </div>
+
+                    <Overlay target={target.current} show={show} placement="bottom">
+                          {(props) => (
+                            <Tooltip id="overlay-example" {...props}>
+                              <span>{user?.displayName}</span>
+                            </Tooltip>
+                          )}
+                    </Overlay>
+                    </>
                 }
             </Nav.Link>
             <Nav.Link href="#deets">Toggle</Nav.Link>
