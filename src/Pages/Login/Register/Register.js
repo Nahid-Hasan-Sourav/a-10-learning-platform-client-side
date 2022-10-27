@@ -131,7 +131,7 @@ const Register = () => {
               Register
             </Button>
             <p className="d-flex flex-row my-2 justify-content-center">
-                Already Have an accoutn? 
+                Already Have an account? 
                  <Nav.Link className="mx-1 text-primary" as={Link} to='/login'>
                     Login
                 </Nav.Link>
